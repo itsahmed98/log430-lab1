@@ -1,3 +1,5 @@
+namespace client.Models;
+
 public class LigneVente
 {
     public int Id { get; set; }

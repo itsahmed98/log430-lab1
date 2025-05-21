@@ -1,3 +1,5 @@
+namespace client.Models;
+
 public class Retour
 {
     public int Id { get; set; }

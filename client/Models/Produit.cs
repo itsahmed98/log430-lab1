@@ -1,3 +1,5 @@
+namespace client.Models;
+
 public class Produit
 {
     public int Id { get; set; }

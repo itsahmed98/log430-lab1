@@ -1,3 +1,5 @@
+namespace client.Models;
+
 public class Vente
 {
     public int Id { get; set; }
