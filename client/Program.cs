@@ -10,6 +10,8 @@ optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=po
 using var context = new MagasinContext(optionsBuilder.Options);
 var produitService = new ProduitService(context);
 var venteService = new VenteService(context);
+var retourService = new RetourService(context);
+
 
 // Ajouter des produits de test si la base est vide
 if (!context.Produits.Any())
@@ -37,6 +39,8 @@ while (continuer)
     Console.WriteLine("\n=== Menu principal ===");
     Console.WriteLine("1. Rechercher un produit");
     Console.WriteLine("2. Enregistrer une vente");
+    Console.WriteLine("3. Gérer un retour");
+    Console.WriteLine("4. Consulter le stock");
     Console.WriteLine("0. Quitter");
     Console.Write("Choix : ");
     var choix = Console.ReadLine();
@@ -48,6 +52,12 @@ while (continuer)
             break;
         case "2":
             EnregistrerVente(venteService);
+            break;
+        case "3":
+            GererRetour(retourService);
+            break;
+        case "4":
+            ConsulterStock(produitService);
             break;
         case "0":
             continuer = false;
@@ -106,3 +116,39 @@ static void EnregistrerVente(VenteService service)
 
     service.EnregistrerVente(listeProduits);
 }
+
+// --- Fonction : CU03 - Gérer un retour ---
+static void GererRetour(RetourService service)
+{
+    Console.WriteLine("\n--- Retour produit ---");
+    Console.Write("ID du produit à retourner : ");
+    var idStr = Console.ReadLine();
+    Console.Write("Quantité retournée : ");
+    var qteStr = Console.ReadLine();
+
+    if (int.TryParse(idStr, out var id) && int.TryParse(qteStr, out var qte))
+    {
+        service.EnregistrerRetour(id, qte);
+    }
+    else
+    {
+        Console.WriteLine("Entrée invalide.");
+    }
+}
+
+// --- Fonction : CU04 - Consulter le stock ---
+static void ConsulterStock(ProduitService service)
+{
+    Console.WriteLine("\n--- Stock actuel ---");
+    var produits = service.ObtenirTousLesProduits();
+
+    foreach (var p in produits)
+    {
+        Console.WriteLine($"[{p.Id}] {p.Nom} - {p.Categorie} - {p.Prix}€ - Stock: {p.QuantiteStock}");
+    }
+
+    if (produits.Count == 0)
+        Console.WriteLine("Aucun produit en stock.");
+}
+
+

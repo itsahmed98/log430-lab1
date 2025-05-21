@@ -27,4 +27,14 @@ public class ProduitService
 
         return query.ToList();
     }
+
+    public List<Produit> ObtenirTousLesProduits()
+    {
+        return _context.Produits
+            .OrderBy(p => p.Nom) // Trier par nom
+            .ToList();
+    }
+
 }
+
+
