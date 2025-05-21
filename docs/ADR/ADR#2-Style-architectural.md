@@ -7,7 +7,7 @@ Acceptée
 L'application doit rester maintenable, claire, et évolutive. Pour cela, il est essentiel de bien séparer la logique métier de l’interface console et de l’accès aux données. Une architecture N-tier à 2 couches est donc un bon choix
 
 ## Décision
-Nous avons choisi de structurer l’application en 2 couches :
+J'ai choisi de structurer l’application en 2 couches :
 - **Présentation** : gestion de l’interface console (menus, saisies, affichages)
 - **Persistance** : accès aux données via l’ORM Entity Framework
 
