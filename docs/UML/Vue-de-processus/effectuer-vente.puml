@@ -1,0 +1,18 @@
+@startuml
+title Diagramme de séquence - Effectuer une vente
+actor Employe
+participant "Interface Console" as UI
+participant "Vente" as Service
+participant "ORM / EF Core" as ORM
+database "PostgreSQL" as DB
+
+Employe -> UI : Sélectionner produits + quantité
+UI -> Service : EffectuerVente(produits)
+Service -> ORM : Créer Vente + LignesVente
+ORM -> DB : INSERT INTO Vente, LigneVente, etc.
+DB --> ORM : Confirmation écriture
+ORM --> Service : OK
+Service --> UI : Afficher total + confirmation
+UI --> Employe : Vente enregistrée avec succès
+
+@enduml

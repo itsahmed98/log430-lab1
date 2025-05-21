@@ -1,0 +1,18 @@
+@startuml
+title Diagramme de séquence - Recherche produit
+actor Employe
+participant "Interface Console" as UI
+participant "Produit" as Service
+participant "ORM / EF Core" as ORM
+database "PostgreSQL" as DB
+
+Employe -> UI : Entrer nom ou ID produit
+UI -> Service : RechercherProduit(critères)
+Service -> ORM : GetProduitByCritère()
+ORM -> DB : SELECT * FROM Produits WHERE ...
+DB --> ORM : Résultat
+ORM --> Service : Liste<Produit>
+Service --> UI : Affichage des résultats
+UI --> Employe : Produits trouvés
+
+@enduml

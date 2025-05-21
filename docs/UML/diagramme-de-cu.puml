@@ -1,0 +1,16 @@
+@startuml
+title Diagramme de cas d'utilisation - Système de caisse
+actor "Employé" as Employe
+
+rectangle "Système de caisse (POS)" {
+  usecase "CU01 Rechercher un produit"
+  usecase "CU02 Enregistrer une vente"
+  usecase "CU03 Gérer un retour"
+  usecase "CU04 Consulter le stock"
+}
+
+Employe --> "CU01 Rechercher un produit"
+Employe --> "CU02 Enregistrer une vente"
+Employe --> "CU03 Gérer un retour"
+Employe --> "CU04 Consulter le stock"
+@enduml
