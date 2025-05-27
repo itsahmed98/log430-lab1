@@ -1,15 +1,14 @@
 @startuml
 title Vue de déploiement - Application de gestion de stock
-node "Machine Virtuelle (VM)" {
   
-  node "Conteneur Docker : client" {
+node "Conteneur Docker : client (N = 3)" {
     component "App Console C#"
-  }
-
-  node "Conteneur Docker : PostgreSQL" {
-    database "Base de données"
-  }
 }
 
-"App Console C#" --> "Base de données" : Connexion via ORM (EF Core)
+node "Conteneur Docker : PostgreSQL" {
+    database "Base de données"
+}
+
+
+"App Console C#" --> "Base de données" : TCP/IP
 @enduml
