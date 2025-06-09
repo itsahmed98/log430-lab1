@@ -1,21 +1,21 @@
 version: '3.8'
 
 services:
-  client:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  app:
+    image: ahmedsherif98/magasin-console-app:latest
+    container_name: magasinconsole-app
+    restart: unless-stopped
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      - DB_CONNECTION=Host=db;Port=5432;Username=postgres;Password=postgres;Database=magasin
-
+      DB_CONNECTION: "Host=db;Port=5432;Database=magasindb;Username=postgres;Password=postgres"
+    ports:
+      - "8090:80"
   db:
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: magasin
-    ports:
-      - "5432:5432"
+      POSTGRES_DB: magasindb
