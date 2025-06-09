@@ -68,9 +68,9 @@ jobs:
 
                       # clone once, then on every run reset to main
                       if [ ! -d ~/lab1-magasinconsole-app ]; then
-                        git clone https://github.com/itsahmed98/log430-lab1.git ~/lab1-magasinconsoleapp
+                        git clone https://github.com/itsahmed98/log430-lab1.git ~/lab1-magasinconsole-app
                       fi
-                      cd ~/lab1-magasinconsoleapp
+                      cd ~/lab1-magasinconsole-app
                       git fetch --all
                       git reset --hard origin/main
 
