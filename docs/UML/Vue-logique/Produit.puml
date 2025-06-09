@@ -1,40 +1,44 @@
 @startuml
 
-class Produit {
+
+package "client" {
+  class Produit {
   +int Id
   +string Nom
   +string Categorie
   +decimal Prix
   +int QuantiteStock
-}
+  }
 
-class Vente {
-  +int Id
-  +DateTime Date
-  +decimal Total
-}
+  class Vente {
+    +int Id
+    +DateTime Date
+    +decimal Total
+  }
 
-class LigneVente {
-  +int Id
-  +int Quantite
-  +decimal PrixUnitaire
-}
+  class LigneVente {
+    +int Id
+    +int Quantite
+    +decimal PrixUnitaire
+  }
 
-class Retour {
-  +int Id
-  +DateTime DateRetour
-  +string Raison
-}
+  class Retour {
+    +int Id
+    +DateTime DateRetour
+    +string Raison
+  }
 
-class Employe {
-  +int Id
-  +string Nom
-}
+  class Employe {
+    +int Id
+    +string Nom
+  }
 
-Vente "1" -- "0..*" LigneVente
-LigneVente "*" --> "1" Produit
-Retour "1" --> "1" Vente
-Retour "*" --> "1" Employe
-Vente "*" --> "1" Employe
+  Vente "1" -- "0..*" LigneVente
+  LigneVente "*" --> "1" Produit
+  Retour "1" --> "1" Vente
+  Retour "*" --> "1" Employe
+  Vente "*" --> "1" Employe
+
+}
 
 @enduml

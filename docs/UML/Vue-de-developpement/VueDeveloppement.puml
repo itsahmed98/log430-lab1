@@ -1,0 +1,64 @@
+@startuml VueDéveloppement_client
+title Vue de Développement - Magasin Central
+!pragma layout smetana
+left to right direction
+
+skinparam component {
+  horizontalSpacing 40
+  verticalSpacing 30
+}
+skinparam package {
+  padding 20
+}
+
+rectangle "Couche Presentation" {
+    package "client.Services (Couche Métier)" as Services <<Layer>> {
+        [ProduitService] <<Component>>
+        [RetourService] <<Component>>
+        [VenteService] <<Component>>
+    }
+
+    rectangle "Console Instace 1" as client1 {
+        [Console1]
+    }
+
+    rectangle "Console Instace 2" as client2 {
+        [Console2]
+    }
+
+    rectangle "Console Instace 3" as client3 {
+        [Console3]
+    }
+
+}
+
+rectangle "Couche Persistance" {
+    package "client.Data (Persistence)" as Contexte <<Layer>> {
+        [MagasinContexte] <<Component>>
+        [DataSeeder] <<Component>>
+    }
+
+    package "client.Models (Domain)" as Models <<Layer>> {
+        [Produit] <<Entity>>
+        [LigneVente] <<Entity>>
+        [Employe] <<Entity>>
+        [Retour] <<Entity>>
+        [Vente] <<Entity>>
+    }
+}
+
+client1 -> Services : <<Utilise>>
+client2 -> Services : <<Utilise>>
+client3 -> Services : <<Utilise>>
+
+Services -> MagasinContexte : <<Accède>>
+
+MagasinContexte --> Produit : <<mappe>>
+MagasinContexte --> LigneVente : <<mappe>>
+MagasinContexte --> Retour : <<mappe>>
+MagasinContexte --> Vente : <<mappe>>
+MagasinContexte --> Employe : <<mappe>>
+
+DataSeeder --> MagasinContexte : <<alimente>>
+
+@enduml

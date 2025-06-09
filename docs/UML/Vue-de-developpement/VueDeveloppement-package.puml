@@ -1,0 +1,24 @@
+@startuml VuePaquet_MagasinCentral
+title Vue de Paquet - Magasin Central
+top to bottom direction
+
+package "client.Services" {
+  class ProduitService
+  class RetourService
+  class VenteService
+}
+
+package "client.Data" {
+  class MagasinContexte
+  class DataSeeder
+}
+
+package "client.Models" {
+  class Employe
+  class Produit
+  class LigneVente
+  class Vente
+  class Retour
+}
+
+@enduml
